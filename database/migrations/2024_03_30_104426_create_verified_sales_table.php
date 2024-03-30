@@ -11,9 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('verified_sales', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('ventas_verificadas', function (Blueprint $table) {
+
+            $table->comment(' This table will be used for sales that approved the quality process');
+            $table->id()->unsigned();
+            $table-> bigInteger ('id_vicidial',)->unsigned();
+            $table-> string ( 'sponsor','60');
+            $table-> string ( 'status_name','60');
+            $table-> string ( 'phone_number','10');
+            $table-> string ( 'first_name',);
+            $table-> string ( 'middle_name',);
+            $table-> string ( 'last_name',);
+            $table-> text ( 'comments',);
+            $table->foreign('id_vicidial')->references('id')->on('ventas_vicidials');
+
         });
     }
 
@@ -22,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('verified_sales');
+        Schema::dropIfExists('ventas_confirmadas');
     }
 };
